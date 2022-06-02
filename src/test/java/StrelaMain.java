@@ -18,9 +18,9 @@ public class StrelaMain {
     public static void main(String[] args) {
         System.setProperty("webdriver.chrome.driver", "C:\\Users\\Raven\\Desktop\\QA\\chromedriver.exe");
         WebDriver driver = new ChromeDriver();
-        driver.navigate().to("http://www.strela.co.rs/");
         driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(10));
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(7));
+        driver.navigate().to("http://www.strela.co.rs/");
         driver.manage().window().maximize();
 
         WebElement headerBtnProdavnica = driver.findElement(By.xpath("//*[@id=\"ctl00_RadMenu1\"]/ul/li[2]/a/span"));
@@ -29,15 +29,13 @@ public class StrelaMain {
         WebElement optionLukoviBows = driver.findElement(By.xpath("//*[@id=\"ctl00_MainContent_GrupeRadTreeView\"]/ul/li[1]/div/span[3]"));
         optionLukoviBows.click();
 
+        WebElement lukSamickSage = driver.findElement(By.xpath("//*[text()='Bow Samick Sage']//ancestor::figure"));
+        lukSamickSage.click();
 
-        //    WebElement lukSamickSage = driver.findElement(By.xpath("//*[text()='Bow Samick Sage']"));
-
-
-        WebElement lukoviBowsLink = driver.findElement(By.xpath("//*[@id=\"ctl00_MainContent_ListView1_ctrl35_Panel1\"]/figure"));
-        lukoviBowsLink.click();
-
-        WebElement articleTitle = driver.findElement(By.xpath ("//*[contains(text(),'Samick')]"));
+        WebElement articleTitle = driver.findElement(By.xpath ("//span[contains(text(),'Samick')]"));
         String actualTitle = articleTitle.getText();
         System.out.println(actualTitle);
+
+        driver.close();
     }
 }
